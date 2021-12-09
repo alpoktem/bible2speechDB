@@ -2,13 +2,6 @@
 
 #Bible speech scraping for Hausa
 
-#Install MFA
-#TODO...
-
-#Download Hausa MFA models 
-# mfa model download acoustic $LANG
-# mfa model download g2p $LANG\_g2p
-
 export LANG=hausa
 export WORKDIR=raw-data
 export OUTDIR=corpus
@@ -27,6 +20,10 @@ export CHAPTERUTT="Sura"
 export AUDIOURLPREFIX=https://downloads.open.bible/audio/ha/haOSRK20/haOSRK20_
 export OPENBIBLE_TEXT_ARCHIVE=https://downloads.open.bible/text/ha/haOSRK20/haOSRK20_USX.zip
 export EBIBLE_TEXT_ARCHIVE=https://ebible.org/Scriptures/hausa_readaloud.zip
+
+#Download Hausa MFA models 
+mfa model download acoustic $LANG
+mfa model download g2p $LANG\_g2p
 
 ####
 #Process starts from here
