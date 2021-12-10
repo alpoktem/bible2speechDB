@@ -13,7 +13,7 @@ chapter_utterance = sys.argv[5]
 NUMBERS_DICT = {l.strip().split('\t')[0]:l.strip().split('\t')[1] for l in open(numbers_csv_path, 'r').readlines()}
 
 usx_content = open(usx_path, 'r')
-soup = BeautifulSoup(usx_content)
+soup = BeautifulSoup(usx_content, features="lxml")
 
 title = soup.find("para", {"style": "h"}).text
 code = soup.find("book")['code']

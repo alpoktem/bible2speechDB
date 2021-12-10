@@ -15,7 +15,7 @@ fi
 for bid in `ls $WORKDIR/audio`
 do
 	echo $bid
-	usx_path=`find $WORKDIR/xml | grep $bid`
+	usx_path=`find $WORKDIR/xml | grep $bid | head -n1`
 	book_audio_path=$WORKDIR/audio/$bid
 
 	python $FS/prepare_book_scripts.py $bid $usx_path $OUTDIR/scripts $NUMBERSCSV $CHAPTERUTT
