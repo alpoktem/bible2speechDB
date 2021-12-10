@@ -16,10 +16,9 @@ if [ ! -d $WORKDIR ]; then
 fi
 
 # Download text archive from eBible and unzip it (if needed)
-
-# curl -O $EBIBLE_TEXT_ARCHIVE
-# unzip $LANG\_readaloud.zip -d $WORKDIR/ebible
-# rm $LANG\_readaloud.zip
+curl -O $EBIBLE_TEXT_ARCHIVE
+unzip $LANG\_readaloud.zip -d $WORKDIR/ebible
+rm $LANG\_readaloud.zip
 
 # Download XML scripts from open.bible
 curl -o $WORKDIR/openbible_text.zip $OPENBIBLE_TEXT_ARCHIVE

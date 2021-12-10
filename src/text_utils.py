@@ -1,6 +1,6 @@
 import re
 
-weird_chars = ['-', '‘', '’', '।', '/', '\u200c', '\x94', '"', 
+weird_chars = ['-', '‘', '।', '/', '\u200c', '\x94', '"', 
                '\u200d', '\x93' ,'…','“', '”', '–', '_', '—', '\u200e',
                "«", "»", "(", ")", "+", "−"]
 
@@ -15,13 +15,16 @@ def number_convert(text, num_dict):
     for l in text.split('\n'):
         line = ""
         for t in l.split():
-            m = re.search(r'[0-9]', t) 
+            mlong = re.search(r'[0-9]+(,)[0-9]+', t) 
+            mshort = re.search(r'[0-9]+', t) 
+            m = mlong if mlong else mshort
             if m:
-                if t in num_dict:
-                    textualized = num_dict[t]
+                num_term = t[m.start():m.end()].replace(',', '')
+                if num_term in num_dict:
+                    textualized = t[0:m.start()] + num_dict[num_term] + t[m.end():]
                     line += textualized + " "
                 else:
-                    print("WARNING: %s not found in numbers dictionary"%(t))
+                    print(" WARNING: %s not found in numbers dictionary (%s)"%(num_term, l))
 
             else:
                 line += t + " "
@@ -29,6 +32,7 @@ def number_convert(text, num_dict):
         text_norm += line + "\n"     
 
     return text_norm
+
 
 def normalize_text(text, newline_at_each_sent=False, remove_punc=False, num_dict=None):
     clean_text = remove_weird_chars_pattern.sub(r' ', text)
