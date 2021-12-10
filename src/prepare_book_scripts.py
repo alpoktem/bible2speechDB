@@ -24,24 +24,25 @@ chapters_normalized = {}
 chapter_text = ""
 
 for elem in soup.usx.children:
-	if elem.name == 'chapter' and 'sid' in elem.attrs:
-		chapter_text = ""
-		chapter_no = elem['number']
-		chapter_id = code + "_" + chapter_no.zfill(3)
-		print(chapter_id)
+    if elem.name == 'chapter' and 'sid' in elem.attrs:
+        chapter_text = ""
+        chapter_no = elem['number']
+        chapter_id = code + "_" + chapter_no.zfill(3)
+        print(chapter_id)
 
-		chapter_text = title + " " + chapter_utterance + " " + chapter_no + "\n"
-	elif chapter_text and elem.name == 'para':
-		if elem['style'] == 'p':
-			for v in elem.children:
-				if not v.name and not v.isspace():
-					chapter_text += v.strip() + "\n"
-		else:
-			chapter_text += elem.text + '\n'
-	elif elem.name == 'chapter' and 'eid' in elem.attrs:
-		chapters_original[chapter_id] = chapter_text
-		chapters_segmented[chapter_id] = normalize_text(chapter_text, newline_at_each_sent=True, remove_punc=False, num_dict=NUMBERS_DICT)
-		chapters_normalized[chapter_id] = normalize_text(chapter_text, newline_at_each_sent=True, remove_punc=True, num_dict=NUMBERS_DICT)
+        chapter_text = title + " " + chapter_utterance + " " + chapter_no + "\n"
+    elif chapter_text and elem.name == 'para':
+        if elem['style'] not in ['b', 'r']:
+            for v in elem.children:
+                if not v.name and not v.isspace():
+                    chapter_text += v.strip() + " "
+                elif v.name == "char":
+                    chapter_text += v.text
+        chapter_text += '\n'
+    elif elem.name == 'chapter' and 'eid' in elem.attrs:
+        chapters_original[chapter_id] = chapter_text
+        chapters_segmented[chapter_id] = normalize_text(chapter_text, newline_at_each_sent=True, remove_punc=False, num_dict=NUMBERS_DICT)
+        chapters_normalized[chapter_id] = normalize_text(chapter_text, newline_at_each_sent=True, remove_punc=True, num_dict=NUMBERS_DICT)
 
 original_out_dir = os.path.join(out_text_path, "original", book_id)
 segmented_out_dir = os.path.join(out_text_path, "segmented", book_id)
