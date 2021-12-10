@@ -1,6 +1,6 @@
 export LANG=hausa 		#Language name as it is used in Montreal forced aligner
-export WORKDIR=/home/twbgmy/LargeDrive/open.bible/raw-data	#Directory to store raw data downloaded from open.bible
-export OUTDIR=/home/twbgmy/LargeDrive/open.bible/corpus	#Directory to store processed corpus files
+export WORKDIR=raw-data	#Directory to store raw data downloaded from open.bible
+export OUTDIR=corpus	#Directory to store processed corpus files
 export AUDIOFORMAT=wav	#mp3 or wav
 
 #A file containing written forms of numbers in line by line format number<TAB>number in written form
