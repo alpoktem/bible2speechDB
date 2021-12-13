@@ -14,6 +14,7 @@ def number_convert(text, num_dict):
     text_norm = ""
     for l in text.split('\n'):
         line = ""
+        l = re.sub(r'([0-9]+)(,| )([0-9]+)', r'\1\3', l) #join numericals with space inside
         for t in l.split():
             mlong = re.search(r'[0-9]+(,)[0-9]+', t) 
             mshort = re.search(r'[0-9]+', t) 
