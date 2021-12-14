@@ -4,35 +4,97 @@
 3	uku
 4	hudu
 5	biyar
-6	shidda
+6	shida
 7	bakwai
 8	takwas
 9	tara
 10	goma
 11	goma sha daya
 12	goma sha biyu
-13	goma sha uku 
-14	goma sha hudu 
+13	goma sha uku
+14	goma sha hudu
 15	goma sha biyar
-16	goma sha shidda
-17	goma sha bakwai 
-18	goma sha takwas 
+16	goma sha shida
+17	goma sha bakwai
+18	goma sha takwas
 19	goma sha tara
 20	ashirin
-21	ashirin sha daya
-22	ashirin sha biyu 
-23	ashirin sha uku
-24	ashirin sha hudu
-25	ashirin sha biyar
-26	ashirin sha shidda 
-27	ashirin sha bakwai 
-28	ashirin sha takwas 
-29	ashirin sha tara 
+21	ashirin da daya
+22	ashirin da biyu
+23	ashirin da uku
+24	ashirin da hudu
+25	ashirin da biyar
+26	ashirin da shida
+27	ashirin da bakwai
+28	ashirin da takwas
+29	ashirin da tara
 30	talatin
+31	talatin da daya
+32	talatin da biyu
+33	talatin da uku
+34	talatin da hudu
+35	talatin da biyar
+36	talatin da shida
+37	talatin da bakwai
+38	talatin da takwas
+39	talatin da tara
 40	arbain
+41	arba'in da daya
+42	arba'in da biyu
+43	arba'in da uku
+44	arba'in da hudu
+45	arba'in da biyar
+46	arba'in da shida
+47	arba'in da bakwai
+48	arba'in da takwas
+49	arba'in da tara
 50	hamsin
-70	sabain
-90	tasani
+51	hamsin da daya
+52	hamsin da biyu
+53	hamsin da uku
+56	hamsin da shida
+60	sittin
+61	sittin da daya
+62	sittin da biyu
+65	sittin da biyar
+70	saba'in
+74	saba'in da hudu
+75	saba'in da biyar
+80	tamanin 
+90	casa'in
+95	casa'in da biyar
+98	casa'in da takwas
+99	casa'in da tara
 100	dari
+110	dari da goma
+112	dari da goma sha biyu
+120	dari da ashirin
+122	dari da ashirin da biyu
+123	dari da ashirin da uku
+127	dari da ashirin da bakwai
+128	dari da ashirin da takwas
+130	dari da talatin
+133	dari da talatin da uku
+137	dari da talatin da bakwai
+139	dari da talatin da tara
+150	dari da hamsin
 200	dari biyu
+245	dari biyu da arba'in da biyar
+250	dari biyu da hamsin
 300	dari uku
+430	dari hudu da talatin
+500	dari biyar
+666	dari shida da sittin da shida
+1000	dubu daya
+1254	dubu daya da dari biyu da hamsin da hudu
+4500	dubu hudu da dari biyar
+5000	dubu biyar
+10000	dubu goma
+12000	dubu goma sha biyu
+18000	dubu goma sha takwas
+20000	dubu ashirin
+24000	dubu ashirin da hudu
+25000	dubu ashirin da biyar
+36000	dubu talatin da shida
+45000	dubu arba'in da biyar
+144000	dubu dari da arba'in da hudu
