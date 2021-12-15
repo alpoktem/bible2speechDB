@@ -23,6 +23,7 @@ do
 	for tg in `ls $TEXTGRIDDIR/$bid`
 	do
 		cid="${tg%.*}"
+		echo $bid $cid
 		python $FS/chunk_chapter.py $WORKDIR/audio/$bid/$cid.$AUDIOFORMAT $TEXTGRIDDIR/$bid/$tg $OUTDIR/scripts/original/$bid/$cid.txt $AUDIOCHUNKSDIR $TEXTCHUNKSDIR
 	done
 done

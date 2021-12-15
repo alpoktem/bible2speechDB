@@ -8,6 +8,7 @@ TEXTGRIDDIR=$WORKDIR/textgrid
 
 for bid in `ls $WORKDIR/audio`
 do
+	echo Aligning $bid
 	BOUTDIR=$TEXTGRIDDIR/$bid
 	# Create output directory
 	if [ ! -d $BOUTDIR ]; then
