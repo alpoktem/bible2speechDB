@@ -12,6 +12,8 @@ chapter_utterance = sys.argv[5]
 #Read number dictionary
 NUMBERS_DICT = {l.strip().split('\t')[0]:l.strip().split('\t')[1] for l in open(numbers_csv_path, 'r').readlines()}
 
+LINE_END=['.', '?', '!', '"', '”', '’']
+
 usx_content = open(usx_path, 'r')
 soup = BeautifulSoup(usx_content, features="lxml")
 
@@ -37,8 +39,9 @@ for elem in soup.usx.children:
                 if not v.name and not v.isspace():
                     chapter_text += v.strip() + " "
                 elif v.name == "char":
-                    chapter_text += v.text
-        chapter_text += '\n'
+                    chapter_text += v.text + " "
+        if chapter_text[-2] in LINE_END:
+            chapter_text += '\n'
     elif elem.name == 'chapter' and 'eid' in elem.attrs:
         chapters_original[chapter_id] = chapter_text
         chapters_segmented[chapter_id] = normalize_text(chapter_text, newline_at_each_sent=True, remove_punc=False, num_dict=NUMBERS_DICT)

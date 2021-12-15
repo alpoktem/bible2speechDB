@@ -5,6 +5,8 @@ import subprocess
 from pydub import AudioSegment
 from text_utils import normalize_text
 
+QUIET=False
+
 audio_file = sys.argv[1]
 aligned_textgrid_file = sys.argv[2]
 text_file = sys.argv[3]
@@ -78,7 +80,7 @@ tg = textgrid.openTextgrid(aligned_textgrid_file, False)
 words_tier = tg.tierDict['words']
 
 #Read audio
-audio_path = audio_convert(audio_file)
+audio_path = audio_convert(audio_file, quiet=QUIET)
 complete_audio = AudioSegment.from_wav(audio_path)
 
 #Parse plain text while keeping track in textgrid and store sentence beginnings and endings
@@ -93,11 +95,20 @@ with open(text_file, 'r') as f:
         sura_words = sura.split()
         
         sura_intervals = words_tier.entryList[tg_word_index:tg_word_index+len(sura_words)]
-        
-        # if not sura_intervals[0].label == sura_words[0] or not sura_intervals[-1].label == sura_words[-1]:
-        #     # print(sura)
-        #     print(sura_intervals[0].label + "-" +  sura_words[0])
-        #     print(sura_intervals[-1].label + "-" +  sura_words[-1])
+
+        sura_beginning = normalize_text(sura_words[0], remove_punc=True).replace('’', "'")
+        sura_end = normalize_text(sura_words[-1], remove_punc=True).replace('’', "'")
+
+        if not sura_intervals[0].label == sura_beginning or not sura_intervals[-1].label == sura_end:
+            if not QUIET:
+                print(sura)
+                print(sura_intervals)
+                print(sura_intervals[0].label + " - " +  sura_beginning)
+                print(sura_intervals[-1].label + " - " +  sura_end)
+                print("-------------------")
+            print("WARNING: Misalignment between textgrid and script. Stopped chunking after %i segments"%len(segments_data))
+            break
+            #TODO: Break from here
 
         segment = {'text':sura, 'start':sura_intervals[0].start, 'end':sura_intervals[-1].end}
         segments_data.append(segment)

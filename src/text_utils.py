@@ -8,8 +8,14 @@ weird_chars = ['-', '‘', '।', '/', '\u200c', '\x94', '"',
 remove_weird_chars_pattern = re.compile('[' + ''.join(weird_chars) + ']', flags=re.UNICODE)
 
 all_punc = ['!', '?', ',', ';', ':', '.']
+all_punc_pattern = re.compile('[' + ''.join(all_punc) + ']', flags=re.UNICODE)
+spaced_punc_pattern = re.compile('\w[' + ''.join(all_punc) + ']', flags=re.UNICODE)
 
-newsent_punc = ['!', '?', '.']
+newsent_punc = ['\?’', '\.’', '!’', '\?”', '\.”', '!”', '\?\"', '\."', '!"', '!', '\?', '\.']
+newsent_punc_pattern = re.compile('(' + '|'.join(newsent_punc) + ')', flags=re.UNICODE)
+
+spaced_punc = ['\?’', '\.’', '!’', '\?”', '\.”', '!”', '\?\"', '\."', '!"', '!', '\?', '\.', ';', ',']
+spaced_punc_pattern = re.compile('(\s)(' + '|'.join(spaced_punc) + ')', flags=re.UNICODE)
 
 def number_convert(text, num_dict):
     text_norm = ""
@@ -40,13 +46,13 @@ def normalize_text(text, newline_at_each_sent=False, remove_punc=False, num_dict
     clean_text = remove_weird_chars_pattern.sub(r' ', text)
 
     if newline_at_each_sent:
-        pattern = re.compile('([' + ''.join(newsent_punc) + '])', flags=re.UNICODE)
-        clean_text = pattern.sub(r'\1\n', clean_text)
+        clean_text = newsent_punc_pattern.sub(r'\1\n', clean_text)
 
     if remove_punc:
-        pattern = re.compile('[' + ''.join(all_punc) + ']', flags=re.UNICODE)
-        clean_text = pattern.sub(r' ', clean_text)
+        clean_text = all_punc_pattern.sub(r'', clean_text)
         clean_text = clean_text.lower()
+    else:
+        clean_text = spaced_punc_pattern.sub(r'\2', clean_text)
 
     if num_dict:
         clean_text = number_convert(clean_text, num_dict)
