@@ -1,7 +1,7 @@
 import re
 
-weird_chars = ['-', '‘', '।', '/', '\u200c', '\x94', '"', 
-               '\u200d', '\x93' ,'…','“', '”', '–', '_', '—', '\u200e',
+weird_chars = ['‘', '।', '/', '\u200c', '\x94', '"', 
+               '\u200d', '\x93' ,'…','“', '”', '_',  '\u200e',
                'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק', 'ר', 'ש', 'ת',
                "«", "»", "(", ")", "+"]
 
@@ -44,8 +44,8 @@ def number_convert(text, num_dict):
 
 def normalize_text(text, newline_at_each_sent=False, remove_punc=False, num_dict=None):
     clean_text = remove_weird_chars_pattern.sub(r'', text)
-    clean_text = clean_text.replace("−", " ")
-
+    clean_text = re.sub('-', ' ', clean_text)
+    print(clean_text)
     if newline_at_each_sent:
         clean_text = newsent_punc_pattern.sub(r'\1\n', clean_text)
 
