@@ -108,7 +108,6 @@ with open(text_file, 'r') as f:
                 print("-------------------")
             print("WARNING: Misalignment between textgrid and script. Stopped chunking after %i segments"%len(segments_data))
             break
-            #TODO: Break from here
 
         segment = {'text':sura, 'start':sura_intervals[0].start, 'end':sura_intervals[-1].end}
         segments_data.append(segment)
