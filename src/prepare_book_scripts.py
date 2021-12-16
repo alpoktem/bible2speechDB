@@ -13,6 +13,7 @@ chapter_utterance = sys.argv[5]
 NUMBERS_DICT = {l.strip().split('\t')[0]:l.strip().split('\t')[1] for l in open(numbers_csv_path, 'r').readlines()}
 
 LINE_END=['.', '?', '!', '"', '”', '’']
+NON_SPEECH_ELEM_STYLES = ['b', 'r', 'iex']
 
 usx_content = open(usx_path, 'r')
 soup = BeautifulSoup(usx_content, features="lxml")
@@ -34,7 +35,7 @@ for elem in soup.usx.children:
 
         chapter_text = title + " " + chapter_utterance + " " + chapter_no + "\n"
     elif chapter_text and elem.name == 'para':
-        if elem['style'] not in ['b', 'r']:
+        if elem['style'] not in NON_SPEECH_ELEM_STYLES:
             for v in elem.children:
                 if not v.name and not v.isspace():
                     chapter_text += v.strip() + " "
