@@ -45,7 +45,7 @@ def number_convert(text, num_dict):
 def normalize_text(text, newline_at_each_sent=False, remove_punc=False, num_dict=None):
     clean_text = remove_weird_chars_pattern.sub(r'', text)
     clean_text = re.sub('-', ' ', clean_text)
-    print(clean_text)
+
     if newline_at_each_sent:
         clean_text = newsent_punc_pattern.sub(r'\1\n', clean_text)
 
