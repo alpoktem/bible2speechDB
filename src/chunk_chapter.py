@@ -99,12 +99,12 @@ with open(text_file, 'r') as f:
         sura_beginning = normalize_text(sura_words[0], remove_punc=True).replace('’', "'")
         sura_end = normalize_text(sura_words[-1], remove_punc=True).replace('’', "'")
 
-        if not sura_intervals[0].label == sura_beginning or not sura_intervals[-1].label == sura_end:
+        if not normalize_text(sura_intervals[0].label) == sura_beginning or not normalize_text(sura_intervals[-1].label) == sura_end:
             if not QUIET:
                 print(sura)
                 print(sura_intervals)
-                print(sura_intervals[0].label + " - " +  sura_beginning)
-                print(sura_intervals[-1].label + " - " +  sura_end)
+                print(normalize_text(sura_intervals[0].label)+ " - " +  sura_beginning)
+                print(normalize_text(sura_intervals[-1].label) + " - " +  sura_end)
                 print("-------------------")
             print("WARNING: Misalignment between textgrid and script. Stopped chunking after %i segments"%len(segments_data))
             break
