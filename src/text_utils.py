@@ -63,6 +63,6 @@ def normalize_text(text, newline_at_each_sent=False, remove_punc=False, num_dict
     clean_text = re.sub('\n +', '\n', clean_text)
     clean_text = re.sub('\n+', '\n', clean_text)
     clean_text = clean_text.strip()
-    clean_text = re.sub('(’|"|”)+$', '', clean_text)
+    clean_text = re.sub('(’|"|”|\')+$', '', clean_text)
 
     return clean_text
