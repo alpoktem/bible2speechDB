@@ -14,5 +14,5 @@ do
 	if [ ! -d $BOUTDIR ]; then
 	  mkdir -p $BOUTDIR;
 	fi
-	mfa align $WORKDIR/audio/$bid $MFADICT $LANG $BOUTDIR --clean
+	mfa align $WORKDIR/audio/$bid $MFADICT $LANG $BOUTDIR --clean --beam 1000
 done
